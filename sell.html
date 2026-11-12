@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Post your item for sale on CampusMart.">
+    <title>Sell an Item | CampusMart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="logo">CampusMart</a>
+
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="index.html#products">Products</a>
+                <a href="sell.html" class="btn">Sell an Item</a>
+                <button class="btn" type="button" onclick="toggleTheme()">
+                    Toggle Theme
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="sell-section">
+            <h1>Sell an Item</h1>
+            <p class="muted">Fill out the form to list your item on CampusMart.</p>
+
+            <form action="/api/listings" method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label for="title">Item Title *</label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        minlength="5"
+                        maxlength="100"
+                        pattern=".*[^0-9\s].*"
+                        placeholder="e.g. Dell Laptop Core i5"
+                        required>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select category</option>
+                            <option value="Books">Books</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Furniture">Furniture</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Stationery">Stationery</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Price (Rs.) *</label>
+                        <input
+                            type="number"
+                            id="price"
+                            name="price"
+                            min="50"
+                            placeholder="Enter your price"
+                            required>
+                    </div>
+
+                </div>
+
+                <fieldset>
+                    <legend>Item Condition *</legend>
+
+                    <label class="radio-option">
+                        <input type="radio" name="condition" value="New" required>
+                        New
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="condition" value="Like new">
+                        Like new
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="condition" value="Good">
+                        Good
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="condition" value="Fair">
+                        Fair
+                    </label>
+                </fieldset>
+
+                <div class="form-group">
+                    <label for="description">Description *</label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="5"
+                        minlength="20"
+                        placeholder="Describe your item, its condition and important details..."
+                        required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Upload Item Image</label>
+                    <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="ownership" required>
+                        I confirm that I own this item and the information is correct.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn">Publish Listing</button>
+
+            </form>
+
+            <h2>Selling Fees</h2>
+
+            <table class="fees-table">
+                <thead>
+                    <tr>
+                        <th>Listing Type</th>
+                        <th>Fee</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Standard Listing</td>
+                        <td>Free</td>
+                    </tr>
+                    <tr>
+                        <td>Featured Listing</td>
+                        <td>Rs. 500</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <details>
+                <summary>Safety Tips for Sellers</summary>
+                <ul>
+                    <li>Meet buyers in a public campus location.</li>
+                    <li>Check payment before handing over your item.</li>
+                    <li>Provide accurate information about the item.</li>
+                    <li>Never share your passwords or private account details.</li>
+                </ul>
+            </details>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 CampusMart. Made for students.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const currentTheme =
+                document.documentElement.getAttribute("data-theme");
+
+            if (currentTheme === "dark") {
+                document.documentElement.removeAttribute("data-theme");
+            } else {
+                document.documentElement.setAttribute("data-theme", "dark");
+            }
+        }
+    </script>
+
+</body>
+</html>
